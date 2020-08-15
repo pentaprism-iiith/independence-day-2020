@@ -95,11 +95,12 @@ sup {
     overflow: hidden;
     height: 500px;
     width: 667px;
-    max-width: 90%;
+    max-width: 90vw;
     position: relative;
     margin: auto;
     border-radius: 10px;
     border: solid white 10px;
+    background-color: white;
 }
 
 .zoom-img {
