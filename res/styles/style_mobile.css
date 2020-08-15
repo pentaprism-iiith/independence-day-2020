@@ -78,9 +78,8 @@ sup {
 
 .zoom-img-container {
     overflow: hidden;
-    /* height: 400px; */
-    width: 800px;
-    max-width: 90%;
+    height: calc(90vw * 0.75);
+    max-width: 90vw;
     background-color: white;
     position: relative;
     margin: auto;
