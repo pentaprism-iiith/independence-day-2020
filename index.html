@@ -23,7 +23,8 @@
 <body onload="init()">
     <div id="load">
         <h1>Please wait while it loads.. It might take a bit..</h1>
-        <a id="page2link" href="./page2.html">Slow internet? Don't worry, we've got you covered! Click here to view a lower res version.</a>
+        <a id="page2link" href="./page2.html">Slow internet? Don't worry, we've got you covered! Click here to view a
+            lower res version.</a>
     </div>
     <div id="main-wrapper">
         <div class="page p-4">
@@ -33,22 +34,43 @@
             <div class="img-wrapper my-4">
                 <div id="zoom-img-container" class="zoom-img-container shadow-lg center">
                     <a id="cross" href="" onclick="exitFullscreen()">&times;</a>
-                    <div class="zoom-img" style="background-image: url('./res/images/mosaic-final-2m.jpg')"></div>
+                    <div id="zoom-img" class="zoom-img"
+                        style="background-image: url('./res/images/mosaic-final-2m.jpg')"></div>
                 </div>
-                <button id="fullscreen-btn" class="btn btn-primary my-3">View in
-                    Fullscreen</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="./res/images/mosaic-final.jpg" download><button class="btn btn-primary my-3">Download Full
-                        Res</button></a>
-                <br />
-                <a id="page2link" href="./page2.html">Slow internet? Don't worry, we've got you covered! Click here</a>
+                <div class="mt-4 mb-2">
+                    <button id="fullscreen-btn" class="btn btn-primary my-2 mx-2">View in
+                        Fullscreen</button>
+                    <span class="mx-2">
+                        Zoom Level = &nbsp;
+                        <select onchange="updateZoom(this.value);">
+                            <option value="2">2x</option>
+                            <option value="5">5x</option>
+                            <option value="10" selected>10x</option>
+                            <option value="15">15x</option>
+                            <option value="20">20x</option>
+                            <option value="25">25x</option>
+                            <option value="30">30x</option>
+                        </select>
+                    </span>
+                    <a href="./res/images/mosaic-final.jpg" download><button class="btn btn-primary my-2 mx-2">Download
+                            Full Res Image</button></a>
+                </div>
+                <a id="page2link" href="./_page2.html" class="mt-4">Slow internet? Don't worry, we've got you covered!
+                    Click here</a>
                 <div id="text" class="container mt-3 p-0">
-                    <p>The freedom to roam around late at night, the JC wali coffee, the pre-deadline panic, those wild birthday parties or our four-legged friends: we all have cherished memories associated with our campus, moments we long to relive.</p>
+                    <p>The freedom to roam around late at night, the JC wali coffee, the pre-deadline panic, those wild
+                        birthday parties or our four-legged friends: we all have cherished memories associated with our
+                        campus, moments we long to relive.</p>
 
-                    <p>On the occasion of India's 74<sup>th</sup> Independence day, Pentaprism and The Art Society proudly present to you a mosaic made out of 6000 of your beloved memories and invaluable pictures.
+                    <p>On the occasion of India's 74<sup>th</sup> Independence day, Pentaprism and The Art Society
+                        proudly present to you a mosaic made out of 6000 of your beloved memories and invaluable
+                        pictures.
 
-                    Because it is you and us much more than brick and mortar that make our campus, and because we're all in this together.
+                        Because it is you and us much more than brick and mortar that make our campus, and because we're
+                        all in this together.
 
-                    To friends we long to hug, to buildings that silently await our return, and to freedom - a Happy Independence Day. Jai Hind! </p>
+                        To friends we long to hug, to buildings that silently await our return, and to freedom - a Happy
+                        Independence Day. Jai Hind! </p>
 
                     <p>Finally, we'd thank each one of you for sharing these pictures with us. </p>
                 </div>
@@ -62,13 +84,18 @@
 
     <!-- SCRIPT FOR ZOOMING IMAGE ON HOVER -->
     <script>
+        let zoomlevel = 10;
+        function updateZoom(value) {
+            zoomlevel = value;
+        }
         $('.zoom-img-container').on('mousemove', function (e) {
             const transAmtY = ((e.pageY - $(this).offset().top) / $(this).height()) * 100;
             const transAmtX = ((e.pageX - $(this).offset().left) / $(this).width()) * 100;
             $(this).children('.zoom-img').css({ 'transform-origin': + transAmtX + '% ' + transAmtY + '%' });
         });
-        $('.zoom-img-container').on('mouseover', function () { $(this).children('.zoom-img').css({ 'transform': 'scale(9)' }); });
-        $('.zoom-img-container').on('mouseout', function () { $(this).children('.zoom-img').css({ 'transform': 'scale(1)' }); });
+
+        $('.zoom-img-container').on('mouseover', function () { $('#zoom-img').css({ 'transform': 'scale(' + zoomlevel + ')' }); });
+        $('.zoom-img-container').on('mouseout', function () { $('#zoom-img').css({ 'transform': 'scale(1)' }); });
     </script>
 
     <!-- SCRIPT FOR REQUESTING FULLSCREEN ON BUTTON CLICK -->
